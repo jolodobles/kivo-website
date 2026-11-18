@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kivo Solutions</title>
+<meta name="description" content="We automate the repetitive admin in Australian small businesses, inside the tools you already use. Book a free admin audit.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2314213D'/%3E%3Ctext x='15' y='47' font-family='Arial Black,Arial' font-weight='900' font-size='40' fill='white'%3EK%3C/text%3E%3Ccircle cx='50' cy='43' r='5' fill='%23F28C28'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Layout: white editorial page, big tight left-aligned headings, two-column section heads (title left, intro right), full-width navy bands for numbers, guarantee and close; orange only for labels, figures and buttons */
+  --navy: #14213D;
+  --navy-deep: #0F1A31;
+  --orange: #F28C28;
+  --orange-ink: #D9701A;
+  --slate: #5B6770;
+  --line: #E4E1DA;
+  --soft: #F6F4EF;
+  --font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --wrap: 1180px;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+html, body { margin: 0; }
+body { font-family: var(--font); background: #fff; color: var(--navy); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; border-radius: 3px; }
+h1, h2, h3 { margin: 0; text-wrap: balance; }
+p { margin: 0; }
+.wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 28px; }
+.label { font-size: 14px; font-weight: 600; color: var(--orange-ink); }
+.muted { color: var(--slate); }
+.btn { display: inline-block; background: var(--orange); color: var(--navy); font-weight: 700; font-size: 16px; font-family: var(--font); text-decoration: none; padding: 15px 24px; border: 0; border-radius: 4px; cursor: pointer; transition: background .2s ease; }
+.btn:hover { background: #F59A3E; }
+.arrow-link { font-weight: 600; font-size: 15px; text-decoration: none; display: inline-flex; gap: 8px; align-items: center; }
+.arrow-link::after { content: "\2192"; transition: transform .2s ease; }
+.arrow-link:hover::after { transform: translateX(4px); }
+
+/* Nav */
+.nav { position: sticky; top: 0; z-index: 10; background: rgba(255,255,255,.96); border-bottom: 1px solid var(--line); backdrop-filter: saturate(1.4) blur(6px); }
+.nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 24px; }
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 800; font-size: 21px; letter-spacing: -0.02em; }
+.logo-mark { width: 32px; height: 32px; border-radius: 7px; background: var(--navy); color: #fff; display: grid; place-items: center; font-weight: 800; font-size: 18px; position: relative; }
+.logo-mark::after { content: ""; position: absolute; width: 5px; height: 5px; border-radius: 50%; background: var(--orange); right: 6px; bottom: 8px; }
+.nav-links { display: flex; gap: 28px; font-size: 15px; font-weight: 500; }
+.nav-links a { text-decoration: none; }
+.nav-links a:hover { color: var(--orange-ink); }
+.nav .btn { padding: 10px 16px; font-size: 14px; }
+
+/* Section heads: big title left, intro right */
+.section { padding: 112px 0; }
+.head { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: end; margin-bottom: 56px; }
+.head h2 { font-size: clamp(40px, 6vw, 72px); font-weight: 800; letter-spacing: -0.04em; line-height: 0.98; }
+.head p { font-size: 18px; color: var(--slate); max-width: 460px; }
+
+/* Hero */
+.hero { padding: 96px 0 104px; }
+.hero .wrap { display: block; }
+.hero h1 { font-size: clamp(44px, 7vw, 96px); font-weight: 800; letter-spacing: -0.05em; line-height: 0.92; margin: 18px 0 28px; }
+.hero h1 span { display: block; }
+.js .hero .btn { display: inline-block; }
+.hero h1 .o { color: var(--orange-ink); }
+.hero .label { font-size: 18px; }
+.hero .lede { font-size: 21px; color: var(--slate); max-width: 620px; margin-bottom: 36px; }
+
+/* Numbers band */
+.band { background: var(--navy); color: #fff; }
+.numbers { padding: 64px 0 56px; }
+.numbers .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+.num b { display: block; font-size: clamp(56px, 7vw, 88px); font-weight: 600; letter-spacing: -0.04em; line-height: 1; font-variant-numeric: tabular-nums; }
+.num b sup { font-size: .35em; color: var(--orange); vertical-align: top; position: relative; top: .3em; margin-left: 2px; }
+.num span { display: block; margin-top: 12px; color: #C7CEDA; font-size: 15px; max-width: 220px; }
+.numbers .note { margin-top: 36px; font-size: 13px; color: #8E99AC; }
+
+/* Pains */
+.pains { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--line); }
+.pains li { display: grid; grid-template-columns: 80px 1fr; padding: 26px 0; border-bottom: 1px solid var(--line); font-size: clamp(22px, 2.6vw, 32px); font-weight: 600; letter-spacing: -0.02em; line-height: 1.2; }
+.pains li span { font-size: 14px; font-weight: 600; color: var(--orange-ink); letter-spacing: 0; padding-top: 8px; font-variant-numeric: tabular-nums; }
+.pain-close { margin-top: 36px; font-size: 20px; max-width: 640px; }
+
+/* Services */
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--navy); }
+.card { padding: 32px 28px 36px 0; border-bottom: 1px solid var(--line); display: grid; gap: 12px; align-content: start; }
+.card:not(:nth-child(3n+1)) { padding-left: 28px; border-left: 1px solid var(--line); }
+.card h3 { font-size: 26px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; }
+.card ul { list-style: none; margin: 4px 0 0; padding: 0; display: grid; gap: 8px; }
+.card li { font-size: 15px; color: var(--slate); padding-left: 16px; position: relative; }
+.card li::before { content: ""; position: absolute; left: 0; top: .7em; width: 6px; height: 1.5px; background: var(--orange); }
+.card .q { margin-top: 10px; font-size: 15px; font-weight: 600; color: var(--navy); border-left: 2px solid var(--orange); padding-left: 12px; }
+.tools { margin-top: 56px; display: grid; gap: 16px; }
+.tools-label { font-size: 14px; font-weight: 600; color: var(--slate); }
+.marquee { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+.track { display: flex; width: max-content; animation: scroll 45s linear infinite; }
+.marquee:hover .track { animation-play-state: paused; }
+.set { display: flex; gap: 48px; padding-right: 48px; }
+.set span { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; color: #8A94A0; white-space: nowrap; }
+@keyframes scroll { to { transform: translateX(-50%); } }
+
+/* Process */
+.process { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
+.stage { padding: 0 32px 0 0; display: grid; gap: 14px; align-content: start; }
+.stage + .stage { padding-left: 32px; border-left: 1px solid var(--line); }
+.stage .n { font-size: 64px; font-weight: 600; letter-spacing: -0.04em; line-height: 1; color: var(--orange-ink); font-variant-numeric: tabular-nums; }
+.stage h3 { font-size: 26px; font-weight: 700; letter-spacing: -0.02em; }
+.stage p { color: var(--slate); }
+.bar { height: 3px; background: var(--line); margin-bottom: 36px; position: relative; overflow: hidden; }
+.bar i { position: absolute; inset: 0; background: var(--orange); transform-origin: left; transition: transform 1.4s cubic-bezier(.2,.7,.2,1); }
+.js .bar:not(.in) i { transform: scaleX(0); }
+.after { margin-top: 48px; }
+
+/* Approach */
+.soft { background: var(--soft); }
+.rows { border-top: 1px solid var(--navy); }
+.row { display: grid; grid-template-columns: 200px 1fr 1fr; gap: 32px; padding: 30px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
+.row h3 { font-size: 24px; font-weight: 700; letter-spacing: -0.02em; }
+.row p { color: var(--slate); }
+.always { margin-top: 32px; font-size: 18px; }
+.always strong { color: var(--orange-ink); }
+
+/* Guarantee band */
+.g { padding: 112px 0; }
+.g .head h2 { color: #fff; }
+.g .head p { color: #C7CEDA; }
+.g-points { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid rgba(255,255,255,.2); }
+.g-points div { padding: 28px 24px 0 0; display: grid; gap: 10px; align-content: start; }
+.g-points div + div { padding-left: 24px; border-left: 1px solid rgba(255,255,255,.2); }
+.g-points span { font-size: 14px; font-weight: 600; color: var(--orange); font-variant-numeric: tabular-nums; }
+.g-points h3 { font-size: 20px; font-weight: 700; }
+.g-points p { color: #C7CEDA; font-size: 16px; }
+
+/* FAQ */
+.faq { border-top: 1px solid var(--navy); }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: 1fr 40px; align-items: center; padding: 26px 0; font-size: clamp(20px, 2.2vw, 26px); font-weight: 600; letter-spacing: -0.02em; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; justify-self: end; width: 32px; height: 32px; border: 1px solid var(--line); border-radius: 50%; display: grid; place-items: center; font-size: 20px; font-weight: 400; color: var(--navy); transition: transform .25s ease, background .25s ease; }
+.faq details[open] summary::after { transform: rotate(45deg); background: var(--soft); }
+.faq details p { padding: 0 60px 28px 0; color: var(--slate); max-width: 720px; }
+
+/* Close */
+.close-band { padding: 120px 0; }
+.close-band h2 { font-size: clamp(52px, 9vw, 124px); font-weight: 800; letter-spacing: -0.05em; line-height: 0.92; }
+.close-band h2 .o { color: var(--orange); }
+.talk { padding: 72px 0 96px; }
+.talk .wrap { display: grid; grid-template-columns: 1fr 1.3fr; gap: 56px; align-items: start; }
+.talk h3 { font-size: 34px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 14px; }
+.form { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 20px; }
+.field { display: grid; gap: 6px; }
+.field.full { grid-column: 1 / -1; }
+.field label { font-size: 14px; font-weight: 600; }
+.field input, .field select { font: inherit; font-size: 17px; padding: 12px 0; border: 0; border-bottom: 1.5px solid var(--navy); border-radius: 0; background: transparent; color: var(--navy); width: 100%; }
+.field input:focus, .field select:focus { outline: none; border-bottom-color: var(--orange); }
+.form-foot { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 18px; align-items: center; margin-top: 8px; }
+.form-foot small { color: var(--slate); font-size: 14px; }
+.msg { grid-column: 1 / -1; font-size: 15px; padding: 12px 14px; border-radius: 4px; display: none; }
+.msg.ok { display: block; background: #EAF5EA; color: #1E5B26; }
+.msg.err { display: block; background: #FCEDEA; color: #8A2C1A; }
+
+footer { border-top: 1px solid var(--line); padding: 40px 0; font-size: 14px; color: var(--slate); }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; align-items: center; }
+footer .links { display: flex; flex-wrap: wrap; gap: 24px; }
+footer a { color: var(--navy); text-decoration: none; font-weight: 500; }
+
+/* Motion: transform-only reveal from a visible resting state */
+@keyframes rise { from { transform: translateY(26px); } to { transform: none; } }
+.js .hero h1 span, .js .hero .lede, .js .hero .btn { animation: rise 1s cubic-bezier(.2,.7,.2,1) both; }
+.js .hero h1 span + span { animation-delay: .1s; }
+.js .hero .lede { animation-delay: .2s; }
+.js .hero .btn { animation-delay: .3s; }
+.js .reveal { transform: translateY(28px); opacity: .5; transition: transform .8s cubic-bezier(.2,.7,.2,1), opacity .8s ease; }
+.js .reveal.in { transform: none; opacity: 1; }
+@media (max-width: 960px) {
+  .nav-links { display: none; }
+  .hero .wrap, .head, .talk .wrap { grid-template-columns: 1fr; }
+  .head { gap: 18px; }
+  .cards, .process, .g-points { grid-template-columns: 1fr; }
+  .card, .card:not(:nth-child(3n+1)) { padding: 28px 0; border-left: 0; }
+  .stage, .stage + .stage { padding: 28px 0; border-left: 0; border-top: 1px solid var(--line); }
+  .g-points div, .g-points div + div { padding: 24px 0; border-left: 0; border-bottom: 1px solid rgba(255,255,255,.2); }
+  .row { grid-template-columns: 1fr; gap: 8px; }
+  .section, .g { padding: 80px 0; }
+}
+@media (max-width: 600px) {
+  .numbers .grid { grid-template-columns: 1fr; gap: 28px; }
+  .form { grid-template-columns: 1fr; }
+  .nav .btn { display: none; }
+  .pains li { grid-template-columns: 48px 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .js .reveal, .js .reveal.in { transform: none; opacity: 1; transition: none; }
+  .js .hero h1 span, .js .hero .lede, .js .hero .btn { animation: none; }
+  .js .bar:not(.in) i { transform: none; }
+  .track { animation: none; width: auto; } .set { flex-wrap: wrap; row-gap: 12px; } .set[aria-hidden] { display: none; }
+  .marquee { -webkit-mask-image: none; mask-image: none; }
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Kivo Solutions home"><span class="logo-mark">K</span>kivo</a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="#automate">What we automate</a>
+      <a href="#how">How we work</a>
+      <a href="#guarantee">Guarantee</a>
+      <a href="#faq">Questions</a>
+    </nav>
+    <a class="btn" href="#talk">Book a free audit</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <p class="label">Simple and effective automation for local businesses</p>
+        <h1><span>Less admin.</span><span class="o">More business.</span></h1>
+        <p class="lede">We automate the repetitive admin in Australian small businesses. Invoicing, quotes, follow-ups and data entry, built inside the tools you already use.</p>
+        <a class="btn" href="#talk">Book a free admin audit</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="band numbers" aria-label="The offer in numbers">
+    <div class="wrap">
+      <div class="grid">
+        <div class="num"><b>5 hrs<sup>*</sup></b><span>of admin back a week, guaranteed</span></div>
+        <div class="num"><b>14 days</b><span>to see it working in your business</span></div>
+        <div class="num"><b>100%</b><span>of what we build stays yours</span></div>
+      </div>
+      <p class="note">*If the audit finds 5+ hours a week of admin we can automate. See our guarantee below.</p>
+    </div>
+  </section>
+
+  <section class="section" id="week">
+    <div class="wrap">
+      <div class="head"><h2>Where the week goes.</h2><p>None of it is difficult. Together it takes hours every week, and most of it can run without you.</p></div>
+      <ul class="pains">
+        <li><span>01</span>Invoices written up after hours.</li>
+        <li><span>02</span>Payments chased by hand.</li>
+        <li><span>03</span>The same job entered into three systems.</li>
+        <li><span>04</span>Quotes sent and never followed up.</li>
+        <li><span>05</span>Details copied between email, files and spreadsheets.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section soft" id="automate">
+    <div class="wrap">
+      <div class="head"><h2>Six automations. Start with one.</h2><p>Each one is built around how your business already works. Most clients start with the task that costs them the most time.</p></div>
+      <div class="cards">
+        <article class="card"><p class="label">Finance</p><h3>Invoicing and payments</h3><ul><li>Overdue reminders sent on schedule</li><li>Invoices created when a job is marked done</li><li>Payments matched to invoices</li></ul><p class="q">Why are we still chasing payments by hand?</p></article>
+        <article class="card"><p class="label">Sales</p><h3>Lead follow-up</h3><ul><li>New messages sorted by type, with a short brief on each</li><li>Replies drafted for your approval</li><li>Follow-ups until they book or decline</li></ul><p class="q">How many enquiries go unanswered each week?</p></article>
+        <article class="card"><p class="label">Sales</p><h3>Quotes</h3><ul><li>Follow-ups on day 2, 5 and 10</li><li>Stops when the customer accepts</li><li>Accepted quotes turned into jobs</li></ul><p class="q">How many quotes go cold without a follow-up?</p></article>
+        <article class="card"><p class="label">Operations</p><h3>Double data entry</h3><ul><li>Job and customer details entered once</li><li>Synced into Xero, MYOB and your job app</li><li>Spreadsheets that update themselves</li></ul><p class="q">How many times is each job typed in?</p></article>
+        <article class="card"><p class="label">Operations</p><h3>Team paperwork</h3><ul><li>Timesheet reminders</li><li>Form and compliance check-ins</li><li>Missing paperwork flagged to you</li></ul><p class="q">Who chases the timesheets every Friday?</p></article>
+        <article class="card"><p class="label">Reporting</p><h3>Reports</h3><ul><li>Weekly figures pulled from your tools</li><li>Sent to your inbox automatically</li><li>Overdue jobs and invoices at a glance</li></ul><p class="q">How long does the weekly report take?</p></article>
+      </div>
+      <div class="tools">
+        <p class="tools-label">Works with the tools you already use</p>
+        <div class="marquee" aria-label="Tools we work with: Xero, MYOB, ServiceM8, Tradify, simPRO, Gmail, Google Drive, Google Sheets, Google Calendar, Google Docs, Outlook, Excel, Microsoft 365">
+          <div class="track"><div class="set"><span>Xero</span><span>MYOB</span><span>ServiceM8</span><span>Tradify</span><span>simPRO</span><span>Gmail</span><span>Google Drive</span><span>Google Sheets</span><span>Google Calendar</span><span>Google Docs</span><span>Outlook</span><span>Excel</span><span>Microsoft 365</span></div><div class="set" aria-hidden="true"><span>Xero</span><span>MYOB</span><span>ServiceM8</span><span>Tradify</span><span>simPRO</span><span>Gmail</span><span>Google Drive</span><span>Google Sheets</span><span>Google Calendar</span><span>Google Docs</span><span>Outlook</span><span>Excel</span><span>Microsoft 365</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="how">
+    <div class="wrap">
+      <div class="head"><h2>One process. Three steps.</h2><p>You see a working version for your business before you commit to anything.</p></div>
+      <div class="bar"><i></i></div>
+      <div class="process">
+        <div class="stage"><span class="n">01</span><h3>Admin audit</h3><p>A 20–30 minute video call. You walk us through how the business runs, and we measure where the admin time goes. Free.</p></div>
+        <div class="stage"><span class="n">02</span><h3>Working demo</h3><p>We build a working version of the fix for your business and walk you through it. You decide whether to go ahead.</p></div>
+        <div class="stage"><span class="n">03</span><h3>14-day pilot</h3><p>We set it up in your tools and refine it until it runs cleanly. Hours saved are measured against the audit.</p></div>
+      </div>
+      <div class="after"><a class="arrow-link" href="#talk">Book a free admin audit</a></div>
+    </div>
+  </section>
+
+  <section class="section soft" id="approach">
+    <div class="wrap">
+      <div class="head"><h2>Automation earns its place.</h2><p>Every automation starts with your approval at each step. It runs on its own only after it has proven itself in your business.</p></div>
+      <div class="rows">
+        <div class="row"><p class="label">Stage 1</p><h3>Drafts for approval</h3><p>It prepares the work, such as a reminder email or a job entry. Nothing is sent until you approve it.</p></div>
+        <div class="row"><p class="label">Stage 2</p><h3>Sorts and routes</h3><p>Once its drafts are reliably right, it files and routes work. Anything unusual still comes to you.</p></div>
+        <div class="row"><p class="label">Stage 3</p><h3>Runs on its own</h3><p>Routine tasks that have run cleanly for a few weeks run without sign-off. Every action is logged.</p></div>
+      </div>
+      <p class="always"><strong>Prices, discounts, refunds and commitments to customers</strong> always need your sign-off.</p>
+    </div>
+  </section>
+
+  <section class="band g" id="guarantee">
+    <div class="wrap">
+      <div class="head"><h2>Five hours a week. Guaranteed.</h2><p>If the audit finds 5+ hours a week of admin we can automate, you'll get them back by the end of the pilot. If not, we keep working until you do.</p></div>
+      <div class="g-points">
+        <div><span>01</span><h3>You see it first</h3><p>The demo is built for your business before you decide anything.</p></div>
+        <div><span>02</span><h3>You own it</h3><p>Everything stays in your accounts and belongs to you.</p></div>
+        <div><span>03</span><h3>You approve it</h3><p>Nothing reaches a customer without a person checking it first.</p></div>
+        <div><span>04</span><h3>No passwords</h3><p>You add us as a user in your tools and can remove us at any time.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="faq">
+    <div class="wrap">
+      <div class="head"><h2>Common questions.</h2><p>Anything else, ask us on the call.</p></div>
+      <div class="faq">
+        <details><summary>Is the audit really free?</summary><p>Yes. If we can't find enough time to save, we'll tell you.</p></details>
+        <details><summary>How much does it cost?</summary><p>Every business runs differently, so there's no one-size-fits-all price. Once we've seen how you work, we'll give you a clear quote for your business before you commit to anything.</p></details>
+        <details><summary>I'm not very technical. Is that a problem?</summary><p>No. You show us how you work, and we handle the technical side. You won't need to learn new software.</p></details>
+        <details><summary>What tools do you work with?</summary><p>The ones you already use: Xero, MYOB, ServiceM8, Tradify, simPRO, Google Workspace, Microsoft 365 and more. If you use something else, ask us.</p></details>
+        <details><summary>How long does it take?</summary><p>Usually a few weeks from the first call to the hours coming back: audit, then demo, then the 14-day pilot.</p></details>
+        <details><summary>Is my data safe?</summary><p>You give us user access, never passwords. You can remove it at any time, and everything stays in your own accounts.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="band close-band">
+    <div class="wrap"><h2>Less admin starts <span class="o">with one call.</span></h2></div>
+  </section>
+
+  <section class="talk" id="talk">
+    <div class="wrap">
+      <div>
+        <h3>Ready to talk?</h3>
+        <p class="muted">Book a free 20–30 minute admin audit by video call. We take on a limited number of new businesses each month.</p>
+        <p class="muted" style="margin-top:14px">Or email <a href="mailto:info@kivosolutions.com.au" style="font-weight:600">info@kivosolutions.com.au</a></p>
+      </div>
+      <form class="form" id="audit-form" novalidate>
+        <div class="field"><label for="f-name">Name</label><input id="f-name" name="firstname" autocomplete="name" required></div>
+        <div class="field"><label for="f-phone">Phone</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required></div>
+        <div class="field full"><label for="f-pain">What admin takes most of your time?</label>
+          <select id="f-pain" name="message" required>
+            <option value="">Select one</option>
+            <option>Invoicing and payments</option>
+            <option>Lead follow-up</option>
+            <option>Quotes</option>
+            <option>Data entry</option>
+            <option>Team paperwork</option>
+            <option>Reports</option>
+            <option>Something else</option>
+          </select>
+        </div>
+        <div class="msg" id="f-msg" role="status" aria-live="polite"></div>
+        <div class="form-foot"><button class="btn" type="submit" id="f-submit">Request a call</button><small>We'll call within one business day to arrange a time.</small></div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="logo" href="#top"><span class="logo-mark">K</span>kivo</a>
+    <div class="links">
+      <a href="mailto:info@kivosolutions.com.au">info@kivosolutions.com.au</a>
+      <a href="privacy.html">Privacy policy</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  if (!("IntersectionObserver" in window) || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  document.documentElement.classList.add("js");
+  const els = document.querySelectorAll(".head, .pains li, .card, .stage, .row, .always, .g-points > div, .faq details, .num, .close-band h2, .talk .wrap > *");
+  els.forEach((el, i) => { el.classList.add("reveal"); el.style.transitionDelay = ((i % 3) * 90) + "ms"; });
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+  }, { rootMargin: "0px 0px -8% 0px" });
+  els.forEach((el) => io.observe(el));
+  document.querySelectorAll(".bar").forEach((el) => io.observe(el));
+})();
+</script>
+<script>
+/* HubSpot form connection: paste your Portal ID and Form ID from HubSpot (Marketing > Forms > your form > Share/Embed). */
+const HUBSPOT = { portalId: "", formId: "" };
+const form = document.getElementById("audit-form");
+const msg = document.getElementById("f-msg");
+const btn = document.getElementById("f-submit");
+function show(type, text) { msg.className = "msg " + type; msg.textContent = text; }
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const name = form.firstname.value.trim(), phone = form.phone.value.trim(), pain = form.message.value;
+  if (!name || !phone || !pain) { show("err", "Please fill in your name, phone and the admin that takes most of your time."); return; }
+  if (phone.replace(/\D/g, "").length < 8) { show("err", "That phone number looks too short. Please check it and try again."); return; }
+  if (!HUBSPOT.portalId || !HUBSPOT.formId) { show("err", "Our booking form isn't connected yet. Please email info@kivosolutions.com.au and we'll call you back."); return; }
+  btn.disabled = true; btn.textContent = "Sending…";
+  try {
+    const res = await fetch(`https://api.hsforms.com/submissions/v3/integration/submit/${HUBSPOT.portalId}/${HUBSPOT.formId}`, {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ fields: [{ name: "firstname", value: name }, { name: "phone", value: phone }, { name: "message", value: pain }], context: { pageUri: location.href, pageName: document.title } })
+    });
+    if (!res.ok) throw new Error(res.status);
+    form.reset();
+    show("ok", "Thanks, " + name + ". We'll call within one business day to arrange a time.");
+  } catch (err) {
+    show("err", "Something went wrong sending the form. Please email info@kivosolutions.com.au and we'll call you back.");
+  } finally { btn.disabled = false; btn.textContent = "Request a call"; }
+});
+</script>
+</body>
+</html>
